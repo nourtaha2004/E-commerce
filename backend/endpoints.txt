@@ -1,0 +1,27 @@
+/books
+
+GET /books : get all books : SELECT ✅
+GET /books/slug : get book by slug SELECT ✅
+
+POST /books : add book : INSERT : Secured  ✅
+DELETE /books/slug : delete book by slug : DELETE : Secured ✅
+PATCH /books/slug : update book by slug : UPDATE : Secured ✅
+
+----------------------------------------------------
+/orders
+
+GET /orders : get all orders : SELECT : Secured ✅
+GET /orders/id : get order by id : SELECT : Secured ✅
+
+DELETE /orders/id : delete order : DELETE : Secured ✅
+PATCH /orders/id : update order : UPDATE : Secured
+PUT /orders/id : create order : Secured : Secured
+
+----------------------------------------------------
+/cart
+
+GET /cart/user_id : get user cart : SELECT : Secured ✅
+
+PATCH /cart/user_id : add items to cart : INSERT : Secured
+PATCH /cart/user_id : remove items from cart : INSERT : Secured
+

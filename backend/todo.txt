@@ -1,0 +1,96 @@
+User:
+
+Login (email, password)
+  - check if email exist
+    if (yes) => check if the passwords match
+      if(yes) => return the whole row
+    else throw errors
+
+Signup(name, email, password, role)
+  - add a new row to the user
+  - role is always 'customer'
+  - unless the admin(or owner) wants to add another admin
+
+
+Category:
+getCategory
+addCategory
+deleteCategory
+
+Products:
+getAllProducts
+  - expected output all the rows of the products table
+
+getProductsCategories
+  - all the rows of the product table where category = ?
+
+getProductBySlug
+  - product having a specific slug
+
+deleteProduct
+  - DELETE using slug = ? or productID
+
+Cart:
+
+Procedures:
+
+getCart (userID)
+  - all the rows from cart table where userID = given(userID);
+
+addToCart (userID, productID , Quantity)
+  - check if item already exist => call editCart();
+  - else add the new row to the cart calling getTotal();
+  - row in cart should look like this:
+    userID(PK)--------productID--------quantity--------totalPrice
+       1      --------   10    --------   4    --------  (price from product table * 4)
+  
+
+
+editCart (userID , productID , newQuantity)
+  - product already exist in cart
+  - update the old quantity with the newQuantity
+  - update the totalPrice using getTotal() function you made
+
+
+function:
+getTotal(productID, quantity) => return totalPrice
+  - using the productID get the price of the product and return price * quantity.
+
+
+Orders:
+getAllOrders
+  - get all the rows of the orders table, you need this in admin page
+  - you can display the fulfilled orders and not fulfilled ones
+
+deleteOrder
+  -using id
+
+fulfillOrder
+  - update the fulfilled from 0 to 1
+
+createOrder
+  
+  - INSERT a row to the orders table to get the inserted id
+
+    ** orders table **:
+    orderID--------userID--------totalPrice--------fulfilled--------date
+    101    --------  1   --------   0      --------   0     -------- NOW()
+
+    now we want to update this row's total price
+
+
+  - loop over the rows of the cart table using a CURSOR
+    sum up the totalPrice ad update the row created in the orders table (id=101 (inserted));
+
+  - add the attributes to the order_details table
+  
+    ** order_details **:
+    orderID -------- productID -------- quantity
+      101   --------   10      --------    4
+      101   --------   11      --------    1
+
+  - check the payment details of the user from the payment table
+    if (!found) => ask for the details
+    else proceed
+
+  - add to the delivery table
